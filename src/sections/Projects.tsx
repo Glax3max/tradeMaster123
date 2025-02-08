@@ -1,10 +1,39 @@
+"use client";
+
+// import Image from "next/image";
+import Script from "next/script";
+// import { useState } from "react";
+
+interface RazorpayInstance {
+  open: () => void;
+}
+declare global {
+  interface Window {
+    Razorpay: new (options: RazorpayOptions) => RazorpayInstance;
+  }
+}
+
+interface RazorpayOptions {
+  key: string;
+  amount?: number;
+  currency?: string;
+  name?: string;
+  description?: string;
+  order_id?: string;
+  handler: (response: RazorpayResponse) => void;
+}
+
+
+interface RazorpayResponse {
+  razorpay_order_id: string;
+  razorpay_payment_id: string;
+  razorpay_signature: string;
+}
+
 import darkSaasLandingPage from "@/assets/images/dark-saas-landing-page.png";
-import lightSaasLandingPage from "@/assets/images/light-saas-landing-page.png";
-import aiStartupLandingPage from "@/assets/images/ai-startup-landing-page.png";
 import Image from "next/image";
 import CheckCircleIcon from "@/assets/icons/check-circle.svg";
 import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg"
-import grainImage from "@/assets/images/grain.jpg"
 import { SectionHeader } from "@/components/SectionHeader";
 import { Card } from "@/components/Card";
 const portfolioProjects = [
@@ -19,6 +48,7 @@ const portfolioProjects = [
     ],
     link: "https://www.youtube.com/shorts/dIP9-1ftkWc",
     image: darkSaasLandingPage,
+    price:799
   },
   {
     company: "Pratush Academy",
@@ -31,6 +61,7 @@ const portfolioProjects = [
     ],
     link: "https://www.youtube.com/shorts/dIP9-1ftkWc",
     image: darkSaasLandingPage,
+    price:899
   },
   {
     company: "Pratush Academy",
@@ -42,12 +73,57 @@ const portfolioProjects = [
       { title: "How to do market analysis." },
     ],
     link: "https://www.youtube.com/shorts/dIP9-1ftkWc",
+    link2: "https://www.youtube.com/shorts/dIP9-1ftkWc",
     image: darkSaasLandingPage,
+    price:999
   },
 ];
 
 export const ProjectsSection = () => {
+  // const [amount, setAmount] = useState<number>(0);
+
+  const createOrder = async (amnt:number) => {
+    const res = await fetch("/api/createOrder", {
+      method: "POST",
+      body: JSON.stringify({ amount: amnt * 100 }),
+    });
+    const data = await res.json();
+
+    const paymentData = {
+      key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "", 
+      order_id: data.id,
+
+      handler: async function (response: RazorpayResponse) {
+        // verify payment
+        const res = await fetch("/api/verifyOrder", {
+          method: "POST",
+          body: JSON.stringify({
+            orderId: response.razorpay_order_id,
+            razorpayPaymentId: response.razorpay_payment_id,
+            razorpaySignature: response.razorpay_signature,
+          }),
+        });
+        const data = await res.json();
+        console.log(data);
+        if (data.isOk) {
+          // do whatever page transition you want here as payment was successful
+          alert("Payment successful");
+        } else {
+          alert("Payment failed");
+        }
+      },
+    };
+
+    const payment = new window.Razorpay(paymentData);
+    payment.open();
+  };
+
   return <section className="pb-16 lg:py-24" id="course" >
+       <Script
+        type="text/javascript"
+        src="https://checkout.razorpay.com/v1/checkout.js"
+      />
+
       <div className="container">
         <div className="flex justify-center">
           <SectionHeader eyebrow="Real-world Result" title="Featured Projects" description="See how I transformed concepts into engaging digital experiences."/>
@@ -56,7 +132,7 @@ export const ProjectsSection = () => {
           {portfolioProjects.map((project,projectIndex) => (
             <Card 
             className=" md:pt-12 md:px-10 lg:pt-16 lg:px-20 after:rounded-3xl pb-0 after:outline-white/20 px-8 pt-8 sticky top-16"
-            key={project.title} 
+            key={projectIndex}
             style={{
               top:`calc(64px + ${projectIndex * 80}px)`
             }}
@@ -75,8 +151,8 @@ export const ProjectsSection = () => {
                  <h3 className="font-serif text-2xl mt-2 md:mt-5 md:text-4xl">{project.title}</h3>
                 <hr className="border-t-2 border-white/5 mt-4 md:mt-5" />
                 <ul className="flex flex-col gap-4 mt-4 md:mt-5">
-                  {project.results.map((result) => (
-                    <li className="flex gap-2 text-sm md:text-base  text-white/50">
+                  {project.results.map((result,resultIndex) => (
+                    <li className="flex gap-2 text-sm md:text-base  text-white/50" key={resultIndex}>
                       <Image src={CheckCircleIcon} className="size-5 md:size-6" alt="circle"/>
                       <span>
                         {result.title}
@@ -85,9 +161,24 @@ export const ProjectsSection = () => {
                   ))}
                 </ul>
                 <a href={project.link}>
-                <button className="bg-white inline-flex items-center md:w-auto px-6 justify-center gap-2 mt-8 text-gray-950 h-12 w-full rounded-xl font-semibold">
+                <button className="bg-white inline-flex items-center md:w-auto px-6 justify-center mx-2 gap-2 mt-8 text-gray-950 h-12 w-full rounded-xl font-semibold">
                   <span > 
-                  View Live Site
+                  View Demo 
+                  </span>
+                  <Image src={ArrowUpRightIcon} className="size-4 " alt="circle"/>
+                  </button>
+                </a>
+                <a>
+                {/* <input
+                    type="number"
+                    placeholder="Enter amount"
+                    className="px-4 py-2 rounded-md text-black"
+                    value={amount}
+                    onChange={(e) => setAmount(Number(e.target.value))}
+                /> */}
+                <button onClick={() => createOrder(project.price)} className="bg-emerald-400 inline-flex items-center md:w-auto px-6 justify-center gap-2 mt-8 text-gray-950 h-12 w-full rounded-xl font-semibold">
+                  <span > 
+                  Buy 
                   </span>
                   <Image src={ArrowUpRightIcon} className="size-4 " alt="circle"/>
                   </button>

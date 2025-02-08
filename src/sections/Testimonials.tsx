@@ -1,11 +1,7 @@
 import memojiAvatar1 from "@/assets/images/memoji-avatar-1.png";
 import memojiAvatar2 from "@/assets/images/memoji-avatar-2.png";
-import memojiAvatar3 from "@/assets/images/memoji-avatar-3.png";
-import memojiAvatar4 from "@/assets/images/memoji-avatar-4.png";
-import memojiAvatar5 from "@/assets/images/memoji-avatar-5.png";
 import { SectionHeader } from "@/components/SectionHeader";
 import Image from 'next/image';
-import grainImage from '@/assets/images/grain.jpg';
 import { Card } from "@/components/Card";
 import { Fragment } from "react";
 const testimonials = [
@@ -56,8 +52,8 @@ export const TestimonialsSection = () => {
     <div className="flex gap-8 pr-8 flex-none animate-move-left [animation-duration:120s] hover:[animation-play-state:paused]">
       {[...new Array(2)].fill(0).map((_ , index)=>(
         <Fragment key={index}>
-      {testimonials.map((testimonial) => (
-        <Card key={testimonial.name} className="max-w-xs md:max-w-md md:p-8 hover:-rotate-3 transition duration-300">
+      {testimonials.map((testimonial,testimonialIndex) => (
+        <Card key={testimonialIndex} className="max-w-xs md:max-w-md md:p-8 hover:-rotate-3 transition duration-300">
           <div className="flex gap-4 items-center">
             <div className="size-14 bg-gray-700 inline-flex items-center justify-center rounded-full flex-shrink-0">
             <Image src={testimonial.avatar} 

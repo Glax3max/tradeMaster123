@@ -1,8 +1,8 @@
 import memojiImage from '@/assets/images/memoji-computer.png';
 import Image from 'next/image';
-import ArrowDown from "@/assets/icons/arrow-down.svg";
+// import ArrowDown from "@/assets/icons/arrow-down.svg";
 import grainImage from "@/assets/images/grain.jpg";
-import StarIcon from '@/assets/icons/star.svg';
+
 
 export const HeroSection = () => {
   return (
@@ -43,7 +43,7 @@ export const HeroSection = () => {
             Welcome to the World of Trading!
           </h1>
           <p className='mt-4 text-center text-white/60 md:text-lg'>
-            "Trade Smarter, not harder. Our course teaches you efficient strategies to maximize your returns."
+          &quot;Trade Smarter, not harder. Our course teaches you efficient strategies to maximize your returns.&quot;
           </p>
         </div>
 
@@ -53,19 +53,14 @@ export const HeroSection = () => {
             className='inline-flex items-center gap-2 border border-white/15 px-6 h-12 rounded-xl hover:bg-white/10 transition'
           >
             <span className='font-semibold'>Explore My Work</span>
-            <Image 
-              src={ArrowDown} 
-              width={20}
-              height={20}
-              alt="Arrow Down"
-            />
+            <span>🔼</span>
           </button>
 
           <button 
             className='inline-flex items-center gap-2 border border-white bg-white text-gray-900 h-12 px-6 rounded-xl hover:bg-gray-200 transition cursor-pointer'
           >
             <span>🤗</span>
-            <span className='font-semibold'>Let's Connect</span>
+            <span className='font-semibold'>Let&apos;s Connect</span>
           </button>
         </div>
       </div>

@@ -1,5 +1,5 @@
-import StarIcon from '@/assets/icons/star.svg';
-import Image from 'next/image';
+// import StarIcon from '@/assets/icons/star.svg';
+// import Image from 'next/image';
 
 
 const words = [
@@ -25,10 +25,11 @@ export const TapeSection = () => {
           <div key={`${word}-${index}`} className='inline-flex gap-4 items-center'>
             <span className='text-gray-900 uppercase font-extrabold text-sm'>{word}</span>
             {/* <StarIcon /> */}
-            <Image 
+            {/* <Image 
         src={StarIcon} 
         className="size-6 -rotate-12"
-        alt="Person seeking behind the laptop" />
+        alt="Person seeking behind the laptop" /> */}
+          <span className="size-6 -rotate-12">✴</span>
           </div>
         ))}
           </div>

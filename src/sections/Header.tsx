@@ -19,7 +19,7 @@ export const Header = () => {
             height={32}
           />
           <span className="text-2xl text-white">
-            Pratyush Academy
+            TradeMaster
           </span>
         </a>
 

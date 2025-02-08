@@ -1,5 +1,5 @@
-import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg";
-import Image from "next/image";
+// import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg";
+// import Image from "next/image";
 
 const footerLinks = [
   {
@@ -32,7 +32,7 @@ export const Footer = () => {
           {footerLinks.map((link)=> (
               <a href={link.href} key={link.title} className="inline-flex items-center gap-1.5">
                 <span className="font-semibold">{link.title}</span>
-                <Image src={ArrowUpRightIcon} className="size-4" alt="arrow up right"/>
+                <span>↗</span>
               </a>
           ))}
         </nav>

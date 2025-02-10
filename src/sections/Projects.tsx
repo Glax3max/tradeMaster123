@@ -165,8 +165,7 @@ export const ProjectsSection = () => {
                   <span > 
                   View Demo 
                   </span>
-                  <Image src={ArrowUpRightIcon} className="size-4 " alt="circle"/>
-                  </button>
+                 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=open_in_new" />
                 </a>
                 <a>
                 {/* <input

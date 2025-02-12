@@ -179,7 +179,8 @@ export const ProjectsSection = () => {
                   <span > 
                   Buy 
                   </span>
-                  <Image src={ArrowUpRightIcon} className="size-4 " alt="circle"/>
+{/*                   <Image src={ArrowUpRightIcon} className="size-4 " alt="circle"/> */}
+                  ↗
                   </button>
                 </a>
                 </div>

@@ -118,7 +118,7 @@ export const ProjectsSection = () => {
     payment.open();
   };
 
-  return <section className="pb-16 lg:py-24" id="course" >
+  return (<section className="pb-16 lg:py-24" id="course" >
        <Script
         type="text/javascript"
         src="https://checkout.razorpay.com/v1/checkout.js"
@@ -192,5 +192,5 @@ export const ProjectsSection = () => {
           ))}
         </div>
       </div>
-    </section>;
+    </section>);
 };

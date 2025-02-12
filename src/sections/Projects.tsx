@@ -169,7 +169,7 @@ export const ProjectsSection = () => {
                   </span>
                  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=open_in_new" />
                 </a>
-                <a>
+                <div>
                 {/* <input
                     type="number"
                     placeholder="Enter amount"
@@ -184,7 +184,7 @@ export const ProjectsSection = () => {
 {/*                   <Image src={ArrowUpRightIcon} className="size-4 " alt="circle"/> */}
                   ↗
                   </button>
-                </a>
+                </div>
                 </div>
                 <div className="relative">
                 <Image src={project.image} alt={project.title} className="mt-8 lg:w-auto lg:max-w-none  -mb-4 md:-mb-0 lg:mt-0 lg:absolute lg:h-full"/>

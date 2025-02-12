@@ -130,12 +130,12 @@ export const ProjectsSection = () => {
           <SectionHeader eyebrow="Real-world Result" title="Featured Projects" description="See how I transformed concepts into engaging digital experiences."/>
         </div>
         <div className="flex md:mt-20 flex-col mt-10 gap-20 ">
-          {portfolioProjects.map((project,projectIndex) => (
+          {portfolioProjects?.length > 0 && portfolioProjects.map((project, projectIndex) => (
             <Card 
             className=" md:pt-12 md:px-10 lg:pt-16 lg:px-20 after:rounded-3xl pb-0 after:outline-white/20 px-8 pt-8 sticky top-16"
             key={projectIndex}
             style={{
-              top:`calc(64px + ${projectIndex * 80}px)`
+              top: `${64 + projectIndex * 80}px`
             }}
             >
               <div className="lg:grid lg:grid-cols-2 lg:gap-16">

@@ -119,7 +119,8 @@ export const ProjectsSection = () => {
   };
 
   return (
-    <><section className="pb-16 lg:py-24" id="course" >
+    <>
+      <section className="pb-16 lg:py-24" id="course" >
        <Script
         type="text/javascript"
         src="https://checkout.razorpay.com/v1/checkout.js"
@@ -154,7 +155,7 @@ export const ProjectsSection = () => {
                 <ul className="flex flex-col gap-4 mt-4 md:mt-5">
                   {project.results.map((result,resultIndex) => (
                     <li className="flex gap-2 text-sm md:text-base  text-white/50" key={resultIndex}>
-{/*                       <Image src={CheckCircleIcon} className="size-5 md:size-6" alt="circle"/> */}
+      {/*                 <Image src={CheckCircleIcon} className="size-5 md:size-6" alt="circle"/> */}
                       ⚫
                       <span>
                         {result.title}
@@ -168,6 +169,7 @@ export const ProjectsSection = () => {
                   View Demo 123
                   </span>
                  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=open_in_new" />
+                </button>
                 </a>
                 <div>
                 {/* <input

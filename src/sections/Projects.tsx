@@ -166,9 +166,8 @@ export const ProjectsSection = () => {
                 <a href={project.link}>
                 <button className="bg-white inline-flex items-center md:w-auto px-6 justify-center mx-2 gap-2 mt-8 text-gray-950 h-12 w-full rounded-xl font-semibold">
                   <span > 
-                  View Demo ✔
+                  View Demo
                   </span>
-{/*                  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&icon_names=open_in_new" /> */}
                 </button>
                 </a>
                 <div>
@@ -184,7 +183,7 @@ export const ProjectsSection = () => {
                   Buy 
                   </span>
 {/*                   <Image src={ArrowUpRightIcon} className="size-4 " alt="circle"/> */}
-                  ↗
+{/*                   ↗ */}
                   </button>
                 </div>
                 </div>

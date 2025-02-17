@@ -172,6 +172,15 @@ export const ProjectsSection = () => {
                   ↗
                   </button>
                   </a>
+                    <a>
+                <button onClick={() => createOrder(project.price)} className="bg-red-500 inline-flex items-center md:w-auto px-6 justify-center gap-2 mt-8 text-gray-950 h-12 w-full rounded-xl font-semibold">
+                  <span > 
+                  Buy 
+                  </span>
+{/*                   <Image src={ArrowUpRightIcon} className="size-4 " alt="circle"/> */}
+                  ↗
+                  </button>
+                  </a>
                 </div>
                 <div className="relative">
                 <Image src={project.image} alt={project.title} className="mt-8 lg:w-auto lg:max-w-none  -mb-4 md:-mb-0 lg:mt-0 lg:absolute lg:h-full"/>

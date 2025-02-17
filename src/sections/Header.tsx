@@ -3,6 +3,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react"; // Import icons for menu toggle
+import TradeMaster from "@/assets/images/TradeMasterIcon.png"
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,10 +14,10 @@ export const Header = () => {
         {/* Logo on the left */}
         <a href="#home" className="flex items-center space-x-3">
           <Image
-            src="https://flowbite.com/docs/images/logo.svg"
+            src={TradeMaster}
             alt="Logo"
-            width={32}
-            height={32}
+            width={52}
+            height={52}
           />
           <span className="text-2xl text-white">
             TradeMaster

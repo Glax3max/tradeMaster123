@@ -163,8 +163,8 @@ export const ProjectsSection = () => {
                     value={amount}
                     onChange={(e) => setAmount(Number(e.target.value))}
                 /> */}
-                  <a>
-                <button onClick={() => createOrder(project.price)} className="bg-emerald-400 inline-flex items-center md:w-auto px-6 justify-center gap-2 mt-8 text-gray-950 h-12 w-full rounded-xl font-semibold">
+                  <a href="https://razorpay.me/@mohdayaanraza?amount=NIt3xHCNPNi%2BgrwecRISoA%3D%3D">
+                <button  className="bg-emerald-400 inline-flex items-center md:w-auto px-6 justify-center gap-2 mt-8 text-gray-950 h-12 w-full rounded-xl font-semibold">
                   <span > 
                   Buy 
                   </span>

@@ -48,7 +48,7 @@ const portfolioProjects = [
     ],
     link: "https://www.youtube.com/shorts/dIP9-1ftkWc",
     image: darkSaasLandingPage,
-    price:799
+    price:899
   },
   {
     company: "Pratush Academy",
@@ -62,20 +62,6 @@ const portfolioProjects = [
     link: "https://www.youtube.com/shorts/dIP9-1ftkWc",
     image: darkSaasLandingPage,
     price:899
-  },
-  {
-    company: "Pratush Academy",
-    year: "2025",
-    title: "Advanced Course",
-    results: [
-      { title: "Basic understanding of Candles." },
-      { title: "How to identify trends." },
-      { title: "How to do market analysis." },
-    ],
-    link: "https://www.youtube.com/shorts/dIP9-1ftkWc",
-    link2: "https://www.youtube.com/shorts/dIP9-1ftkWc",
-    image: darkSaasLandingPage,
-    price:999
   },
 ];
 
@@ -128,7 +114,7 @@ export const ProjectsSection = () => {
 
       <div className="container">
         <div className="flex justify-center">
-          <SectionHeader eyebrow="Real-world Result" title="Featured Projects" description="See how I transformed concepts into engaging digital experiences."/>
+          <SectionHeader eyebrow="Real-world Result" title="Popular Courses" description="See how I transformed concepts into engaging digital experiences."/>
         </div>
         <div className="flex md:mt-20 flex-col mt-10 gap-20 ">
           {portfolioProjects?.length > 0 && portfolioProjects.map((project, projectIndex) => (
@@ -183,7 +169,7 @@ export const ProjectsSection = () => {
                   Buy 
                   </span>
 {/*                   <Image src={ArrowUpRightIcon} className="size-4 " alt="circle"/> */}
-{/*                   ↗ */}
+                  ↗
                   </button>
                   </a>
                 </div>

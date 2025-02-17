@@ -16,8 +16,8 @@ export const Header = () => {
           <Image
             src={TradeMaster}
             alt="Logo"
-            width={52}
-            height={52}
+            width={82}
+            height={82}
           />
           <span className="text-2xl text-white">
             TradeMaster

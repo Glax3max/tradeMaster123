@@ -55,13 +55,14 @@ export const HeroSection = () => {
             <span className='font-semibold'>Explore My Work</span>
             <span>🔼</span>
           </button>
-
+          <a href="https://t.me/tradebymaster">
           <button 
             className='inline-flex items-center gap-2 border border-white bg-white text-gray-900 h-12 px-6 rounded-xl hover:bg-gray-200 transition cursor-pointer'
           >
             <span>🤗</span>
             <span className='font-semibold'>Let&apos;s Connect</span>
           </button>
+          </a>
         </div>
       </div>
     </div>

@@ -27,7 +27,7 @@ export const ContactSection = () => {
 
             {/* Button */}
             <div className="z-20">
-            <a href="tel:+917061847929">
+            <a href="tel:+919264953469">
                 <button
                   className="text-white bg-gray-900 inline-flex items-center px-6 h-12 rounded-xl gap-2 w-max border border-gray-900 hover:bg-gray-800 hover:border-emerald-500 transition-all duration-300"
                 >

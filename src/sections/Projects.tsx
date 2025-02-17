@@ -177,7 +177,7 @@ export const ProjectsSection = () => {
                     value={amount}
                     onChange={(e) => setAmount(Number(e.target.value))}
                 /> */}
-                  
+                  <a>
                 <button onClick={() => createOrder(project.price)} className="bg-emerald-400 inline-flex items-center md:w-auto px-6 justify-center gap-2 mt-8 text-gray-950 h-12 w-full rounded-xl font-semibold">
                   <span > 
                   Buy 
@@ -185,8 +185,7 @@ export const ProjectsSection = () => {
 {/*                   <Image src={ArrowUpRightIcon} className="size-4 " alt="circle"/> */}
 {/*                   ↗ */}
                   </button>
-                    
-                </div>
+                  </a>
                 </div>
                 <div className="relative">
                 <Image src={project.image} alt={project.title} className="mt-8 lg:w-auto lg:max-w-none  -mb-4 md:-mb-0 lg:mt-0 lg:absolute lg:h-full"/>

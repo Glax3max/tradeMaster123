@@ -10,14 +10,14 @@ export const Header = () => {
 
   return (
     <div className="fixed top-0 w-full z-50 shadow-lg font-serif font-light">
-      <nav className="max-w-screen-xl mx-auto p-4 flex items-center justify-between">
+      <nav className="max-w-screen-xl mx-auto p-3 flex items-center justify-between">
         {/* Logo on the left */}
         <a href="#home" className="flex items-center space-x-3">
           <Image
             src={TradeMaster}
             alt="Logo"
-            width={82}
-            height={82}
+            width={52}
+            height={52}
           />
           <span className="text-2xl text-white">
             TradeMaster

@@ -77,6 +77,7 @@ const UserDetail: React.FC = () => {
         router.push("https://razorpay.me/@mohdayaanraza?amount=NIt3xHCNPNi%2BgrwecRISoA%3D%3D"); // Replace with actual Razorpay checkout URL
       }, 1000);
     } catch (error) {
+      console.log(error);
       setError("Error submitting form. Please try again.");
     } finally {
       setLoading(false);

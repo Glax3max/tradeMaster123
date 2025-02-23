@@ -47,6 +47,7 @@ const portfolioProjects = [
       { title: "Basic understanding of Candles." },
       { title: "How to identify trends." },
       { title: "How to do market analysis." },
+      { title: "Completion Certificates." },
     ],
     link: "https://www.youtube.com/shorts/dIP9-1ftkWc",
     image: darkSaasLandingPage,
@@ -55,15 +56,17 @@ const portfolioProjects = [
   {
     company: "Trade Master",
     year: "2025",
-    title: "Intermidiate Course",
+    title: "Advanced Course",
     results: [
       { title: "Basic understanding of Candles." },
       { title: "How to identify trends." },
       { title: "How to do market analysis." },
+      { title: "Completion Certificates." },
+      { title: "Personal Guidence." },
     ],
     link: "https://www.youtube.com/shorts/dIP9-1ftkWc",
     image: darkSaasLandingPage,
-    price:899
+    price:1899
   },
 ];
 

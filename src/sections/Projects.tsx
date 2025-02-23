@@ -1,34 +1,34 @@
 "use client";
 
 // import Image from "next/image";
-import Script from "next/script";
+// import Script from "next/script";
 // import { useState } from "react";
 
-interface RazorpayInstance {
-  open: () => void;
-}
-declare global {
-  interface Window {
-    Razorpay: new (options: RazorpayOptions) => RazorpayInstance;
-  }
-}
+// interface RazorpayInstance {
+//   open: () => void;
+// }
+// declare global {
+//   interface Window {
+//     Razorpay: new (options: RazorpayOptions) => RazorpayInstance;
+//   }
+// }
 
-interface RazorpayOptions {
-  key: string;
-  amount?: number;
-  currency?: string;
-  name?: string;
-  description?: string;
-  order_id?: string;
-  handler: (response: RazorpayResponse) => void;
-}
+// interface RazorpayOptions {
+//   key: string;
+//   amount?: number;
+//   currency?: string;
+//   name?: string;
+//   description?: string;
+//   order_id?: string;
+//   handler: (response: RazorpayResponse) => void;
+// }
 
 
-interface RazorpayResponse {
-  razorpay_order_id: string;
-  razorpay_payment_id: string;
-  razorpay_signature: string;
-}
+// interface RazorpayResponse {
+//   razorpay_order_id: string;
+//   razorpay_payment_id: string;
+//   razorpay_signature: string;
+// }
 
 import darkSaasLandingPage from "@/assets/images/dark-saas-landing-page.png";
 import Image from "next/image";
@@ -36,6 +36,8 @@ import Image from "next/image";
 // import ArrowUpRightIcon from "@/assets/icons/arrow-up-right.svg"
 import { SectionHeader } from "@/components/SectionHeader";
 import { Card } from "@/components/Card";
+import UserDetail from "./UserDetail";
+
 const portfolioProjects = [
   {
     company: "Pratush Academy",
@@ -68,49 +70,49 @@ const portfolioProjects = [
 export const ProjectsSection = () => {
   // const [amount, setAmount] = useState<number>(0);
 
-  const createOrder = async (amnt:number) => {
-    const res = await fetch("/api/createOrder", {
-      method: "POST",
-      body: JSON.stringify({ amount: amnt * 100 }),
-    });
-    const data = await res.json();
+  // const createOrder = async (amnt:number) => {
+  //   const res = await fetch("/api/createOrder", {
+  //     method: "POST",
+  //     body: JSON.stringify({ amount: amnt * 100 }),
+  //   });
+  //   const data = await res.json();
 
-    const paymentData = {
-      key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "", 
-      order_id: data.id,
+  //   const paymentData = {
+  //     key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "", 
+  //     order_id: data.id,
 
-      handler: async function (response: RazorpayResponse) {
-        // verify payment
-        const res = await fetch("/api/verifyOrder", {
-          method: "POST",
-          body: JSON.stringify({
-            orderId: response.razorpay_order_id,
-            razorpayPaymentId: response.razorpay_payment_id,
-            razorpaySignature: response.razorpay_signature,
-          }),
-        });
-        const data = await res.json();
-        console.log(data);
-        if (data.isOk) {
-          // do whatever page transition you want here as payment was successful
-          alert("Payment successful");
-        } else {
-          alert("Payment failed");
-        }
-      },
-    };
+  //     handler: async function (response: RazorpayResponse) {
+  //       // verify payment
+  //       const res = await fetch("/api/verifyOrder", {
+  //         method: "POST",
+  //         body: JSON.stringify({
+  //           orderId: response.razorpay_order_id,
+  //           razorpayPaymentId: response.razorpay_payment_id,
+  //           razorpaySignature: response.razorpay_signature,
+  //         }),
+  //       });
+  //       const data = await res.json();
+  //       console.log(data);
+  //       if (data.isOk) {
+  //         // do whatever page transition you want here as payment was successful
+  //         alert("Payment successful");
+  //       } else {
+  //         alert("Payment failed");
+  //       }
+  //     },
+  //   };
 
-    const payment = new window.Razorpay(paymentData);
-    payment.open();
-  };
+  //   const payment = new window.Razorpay(paymentData);
+  //   payment.open();
+  // };
 
   return (
     <>
       <section className="pb-16 lg:py-24" id="course" >
-       <Script
+{/*        <Script
         type="text/javascript"
         src="https://checkout.razorpay.com/v1/checkout.js"
-      />
+      /> */}
 
       <div className="container">
         <div className="flex justify-center">
@@ -172,15 +174,15 @@ export const ProjectsSection = () => {
                   ↗
                   </button>
                   </a>
-                    <a>
+{/*                     <a>
                 <button onClick={() => createOrder(project.price)} className="bg-red-500 inline-flex items-center md:w-auto px-6 justify-center gap-2 mt-8 text-gray-950 h-12 w-full rounded-xl font-semibold">
                   <span > 
                   Buy 
                   </span>
-{/*                   <Image src={ArrowUpRightIcon} className="size-4 " alt="circle"/> */}
                   ↗
                   </button>
-                  </a>
+                  </a> */}
+                    <UserDetail />
                 </div>
                 <div className="relative">
                 <Image src={project.image} alt={project.title} className="mt-8 lg:w-auto lg:max-w-none  -mb-4 md:-mb-0 lg:mt-0 lg:absolute lg:h-full"/>

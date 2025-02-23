@@ -40,7 +40,7 @@ import UserDetail from "./UserDetail";
 
 const portfolioProjects = [
   {
-    company: "Pratush Academy",
+    company: "Trade Master",
     year: "2025",
     title: "Begginer Course",
     results: [
@@ -53,7 +53,7 @@ const portfolioProjects = [
     price:899
   },
   {
-    company: "Pratush Academy",
+    company: "Trade Master",
     year: "2025",
     title: "Intermidiate Course",
     results: [

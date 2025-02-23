@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
 // import { useState } from "react";
@@ -27,7 +27,12 @@ const UserDetail: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const router = useRouter();
-
+  useEffect(() => {
+    document.body.style.overflow = "hidden"; // Disable scroll when form is open
+    return () => {
+      document.body.style.overflow = "auto"; // Restore scroll on unmount
+    };
+  }, []);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value, type, checked } = e.target;
 

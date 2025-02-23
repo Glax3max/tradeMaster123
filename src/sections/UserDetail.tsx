@@ -3,8 +3,6 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-// import { useState } from "react";
-
 interface FormData {
   email: string;
   name: string;
@@ -20,22 +18,24 @@ const UserDetail: React.FC = () => {
     termsAccepted: false,
   });
 
-
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const router = useRouter();
+
+  // Prevent background scrolling when modal is open
   useEffect(() => {
-    document.body.style.overflow = "hidden"; // Disable scroll when form is open
-    return () => {
-      document.body.style.overflow = "auto"; // Restore scroll on unmount
-    };
-  }, []);
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+  }, [isModalOpen]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { id, value, type, checked } = e.target;
-
     setFormData((prev) => ({
       ...prev,
       [id]: type === "checkbox" ? checked : value,
@@ -43,63 +43,98 @@ const UserDetail: React.FC = () => {
   };
 
   const handleNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
-    setFormData((prev) => ({ ...prev, number: value }));
+    const value = e.target.value.replace(/\D/g, ""); // Allow only numbers
+    if (value.length <= 10) {
+      setFormData((prev) => ({ ...prev, number: value }));
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
     setSuccess(null);
-
+  
     // Name validation (only letters and spaces allowed)
     if (!/^[a-zA-Z\s]+$/.test(formData.name)) {
       setError("Name should contain only letters and spaces.");
       return;
     }
-
+  
     // Mobile number validation (must be exactly 10 digits)
     if (!/^\d{10}$/.test(formData.number)) {
       setError("Mobile number should be exactly 10 digits.");
       return;
     }
-
+  
     try {
       setLoading(true);
-      const response = await fetch("/api/user", {
+  
+      // Step 1: Check if user already exists
+      const checkUserResponse = await fetch(`/api/user?email=${formData.email}&number=${formData.number}`);
+  
+      // ✅ Safe handling of JSON response
+      const responseText = await checkUserResponse.text();
+      console.log("Raw response:", responseText);
+      let userExists = responseText ? JSON.parse(responseText) : { exists: false };
+      // let userExists = false;
+      if (checkUserResponse.ok) {
+        try {
+          const jsonResponse = await checkUserResponse.json();
+          userExists = jsonResponse.exists;
+        } catch (error) {
+          console.warn("Failed to parse JSON:", error);
+        }
+      }
+  
+      if (userExists) {
+        // Step 2: If user exists, redirect to Razorpay
+        router.push("https://razorpay.me/@mohdayaanraza?amount=NIt3xHCNPNi%2BgrwecRISoA%3D%3D");
+        return;
+      }
+  
+      // Step 3: If user doesn't exist, create user
+      const createUserResponse = await fetch("/api/user", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-
-      if (!response.ok) throw new Error("Failed to submit form");
-
+  
+      console.log("Create User Response:", createUserResponse);
+  
+      if (!createUserResponse.ok) {
+        const errorText = await createUserResponse.text();
+        throw new Error(`Failed to submit form: ${errorText}`);
+      }
+  
       setSuccess("User details submitted successfully!");
-      
-      // Wait briefly before redirecting
+  
+      // Step 4: Redirect new user to Razorpay after successful creation
       setTimeout(() => {
-        setIsModalOpen(false); // Close modal before redirection
-        router.push("https://razorpay.me/@mohdayaanraza?amount=NIt3xHCNPNi%2BgrwecRISoA%3D%3D"); // Replace with actual Razorpay checkout URL
+        setIsModalOpen(false);
+        router.push("https://razorpay.me/@mohdayaanraza?amount=NIt3xHCNPNi%2BgrwecRISoA%3D%3D");
       }, 1000);
     } catch (error) {
-      console.log(error);
-      setError("Error submitting form. Please try again.");
+      console.error("Error submitting form:", error);
+      setError("Error submitting form. Please check the console for details.");
     } finally {
       setLoading(false);
     }
   };
+  
+  
+  
 
   return (
-    <div className="relative inline py-6" >
+    <div className="relative inline py-6">
       {/* Buy Button */}
       <button
         onClick={() => setIsModalOpen(true)}
-        className="text-black bg-emerald-400  hover:bg-emerald-700  focus:ring-4 focus:outline-none mt-8 h-12 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5"
+        className="text-black bg-emerald-400 hover:bg-emerald-700 focus:ring-4 focus:outline-none mt-8 h-12 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5"
       >
         Buy Now ↗
       </button>
 
-      {/* Modal - Initially Hidden */}
+      {/* Modal */}
       {isModalOpen && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-md z-50">
           <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-md w-full relative">
@@ -188,7 +223,7 @@ const UserDetail: React.FC = () => {
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full text-white bg-emerald-400  hover:bg-emerald-600  font-medium rounded-lg text-sm px-5 py-2.5"
+                className="w-full text-white bg-emerald-400 hover:bg-emerald-600 font-medium rounded-lg text-sm px-5 py-2.5"
                 disabled={loading}
               >
                 {loading ? "Submitting..." : "Submit & Proceed to Payment"}

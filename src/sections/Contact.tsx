@@ -27,7 +27,7 @@ export const ContactSection = () => {
 
             {/* Button */}
             <div className="z-20">
-            <a href="Masterintrade1@gmail.com
+            <a href="mailto:Masterintrade1@gmail.com
 
 ">
                 <button
